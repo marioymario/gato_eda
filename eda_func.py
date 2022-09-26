@@ -35,4 +35,16 @@ def feature_obs(dataframe):
     
     return result
         
+def missing(dataframe):
+    """Takes a pandas df as an argument, and returns
+    another one with information about the NaN in numeric 
+    arrays, None or NaN in object arrays, NaT in datetimelike"""
                     
+    # Running validation of the argument
+    assert type(dataframe) == pd.DataFrame, f'{dataframe}, is not a pandas df.
+    
+    # Assign values
+    total_missing = df.isnull().sum().sort_values(ascending=False)
+    percent_missing = (df.isnull().sum()/df.isnull().count()).sort_values(ascending=False)
+    missing_data = pd.concat([total_missing, percent_missing], axis=1, keys=['Total', 'Percent'])
+    return(missing_data.head(len(df.columns)))
