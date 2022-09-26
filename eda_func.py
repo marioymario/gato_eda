@@ -50,5 +50,6 @@ def missing(dataframe):
     total_missing = df.isnull().sum().sort_values(ascending=False)
     percent_missing = (df.isnull().sum()/df.isnull().count()).sort_values(ascending=False)
     missing_data = pd.concat([total_missing, percent_missing], axis=1, keys=['Total', 'Percent'])
+    
     return(missing_data.head(len(df.columns)))
 
