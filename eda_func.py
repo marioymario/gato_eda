@@ -38,8 +38,8 @@ def feature_obs(dataframe):
 def missing(dataframe):
     """Takes a pandas df as an argument, and returns
     another one with information about the NaN in numeric 
-    arrays, None or NaN in object arrays, NaT in datetimelike"""
-                    
+    arrays, None or NaN in object arrays, NaT in datetimelike"""            
+
     # Running validation of the argument
 
     assert type(dataframe) == pd.DataFrame, f'{dataframe}, is not a pandas df.'
