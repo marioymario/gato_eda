@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from eda_func import *
 
 dataframe = pd.read_csv('out.csv')
