@@ -54,3 +54,12 @@ def missing(dataframe):
     
     return(missing_data.head(len(df.columns)))
 
+
+def basic_info(dataframe):
+    """Takes a pandas df as an argument, and prints
+    basic information information about the dataset"""
+    df = dataframe 
+    print(df.head())
+    print(df.info())
+    
+    
