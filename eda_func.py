@@ -27,7 +27,7 @@ def feature_obs(dataframe):
                           
     result = {
     
-        'message' : f'{len(feat_to_look)} features are missing less than 5% and {len(feat_to_kill)} columns are missing more than 5%',
+        'message' : f'{len(feat_to_look)} features are missing less than 5% and {len(feat_to_kill)} features are missing more than 5%',
         'features over 5%' : feat_to_kill,
         'features less than 5%' : feat_to_look, 
     
@@ -59,9 +59,10 @@ def basic_info(dataframe):
     """Takes a pandas df as an argument, and prints
     basic information information about the dataset"""
     df = dataframe 
-    print(df.head())
+    print(df.head(10))
+    print('---------')
     print(df.info())
-    
+    print('---------')
     
 def invalid_df(dataframe: pd.DataFrame):
     """
@@ -167,3 +168,15 @@ def filler_of_the_nans(technique, df, list_to_fill):
             dff.loc[:, i] =  dff.loc[:, i].fillna(dff.loc[:, i].mode()[0])
         return dff
     else: return dff
+
+def transform_to_nan(elemento, dataframe, column_name):
+    """
+    arguments
+    returns new df.
+    """
+    df = dataframe.copy()
+    df[column_name] = df[column_name].astype(str).apply(str.strip).replace(elemento, np.nan)
+    df[column_name] = df[column_name].astype(str).apply(str.strip).replace('nan', np.nan)
+     
+    return df
+
