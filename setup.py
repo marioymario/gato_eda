@@ -8,14 +8,14 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, 'README.md'), encoding='utf-8') as fh:
     long_description = '\n' + fh.read()
 
-VERSION = '0.0.1'
+VERSION = '0.0.2'
 DESCRIPTION = 'Functions for exploratory data analysis'
 LONG_DESCRIPTION = 'A set of functions that help to clean and analyse data\
         builded on top of pandas, numpy, matplot.pyplot, seaborn, statsmodels, and scipy.'
 
 # Setting up
 setup(
-    name='gato_eda',
+    name='gatoeda',
     version=VERSION,
     author='GatoMario (Mario Hevia Cavieres)',
     author_email="mario.hevia@gmail.com",
