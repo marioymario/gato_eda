@@ -20,10 +20,10 @@ setup(
     author='GatoMario (Mario Hevia Cavieres)',
     author_email="mario.hevia@gmail.com",
     description=DESCRIPTION,
-    long_description_content_type='text'
+    long_description_content_type='text',
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
-    install_requires=[scipy, statsmodels, math, panda, numpy, matplotlib, seaborn],
+    install_requires=['scipy', 'statsmodels','math', 'pandas', 'numpy', 'matplotlib', 'seaborn'],
     keywords=['python', 'EDA', 'exploratory data analysis'],
     classifiers=[
         "Development Status :: 1 - Planning",
