@@ -2,6 +2,7 @@ from scipy import stats
 from scipy.stats import skew
 from scipy.stats import kurtosis
 import statsmodels.api as sm
+from sklearn.utils import resample
 
 import math
 import pandas as pd
@@ -113,7 +114,6 @@ def get_invalid_values(dataframe: pd.DataFrame):
     invalids = []
     uniques = []
     result = pd.DataFrame({
-        'column': df.columns,
         'nulls': df.isnull().sum(),
     })
     for c in df.columns:
@@ -402,6 +402,57 @@ def distribution(df, col):
     
     plt.show()
     
+
+################################################################################
+####################UpSampleMinorityClass#######################################
+
+def upsample_minority_class(data, feature):
+    
+    '''
+    Take a pandas df and one binary feature.
+    identify the minority class,
+    upsamples the minority in a binary class in a DataFrame 
+    to match the size of the majority class.
+
+      Args:
+        data: The DataFrame to be upsampled, pandas Data Frame.
+        feature: the columns name, string.
+        
+      Returns:
+        A DataFrame with the minority class upsampled.
+    '''
+    
+    ## Identify data points from majority and minority classes
+    
+    class_1 = data[feature].value_counts().index[0]
+    class_2 = data[feature].value_counts().index[1]
+    
+    majority_class = None
+    minority_class = None
+
+    if class_1 > class_2:
+        majority_class = class_1
+        minority_class = class_2
+    else: 
+        majority_class = class_2
+        minority_class = class_1
+
+    
+    data_majority = data[data[feature] == majority_class]
+    data_minority = data[data[feature] == minority_class]
+    
+    n_samples = len(data_majority)
+                              
+    data_minority_upsampled = resample(
+          data_minority,
+          replace=True,
+          n_samples=n_samples,
+          random_state=None)
+
+    data_upsampled = pd.concat([data_majority, \
+                                data_minority_upsampled]).reset_index(drop=True)
+
+    return data_upsampled
 
 ################################################################################
 ################################################################################
